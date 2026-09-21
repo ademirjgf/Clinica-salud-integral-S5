@@ -1,0 +1,14 @@
+node_modules
+dist
+
+# Variables de entorno
+.env
+
+# Prisma Client generado
+/generated/prisma
+
+# Archivos auxiliares de herramientas
+.agents/
+.claude/
+.windsurf/
+skills-lock.json
