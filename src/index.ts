@@ -8,6 +8,7 @@ import { readFileSync } from "node:fs"
 import swaggerUi from "swagger-ui-express"
 import { verifyToken } from "./middlewares/auth.middleware.js"
 import { authorize } from "./middlewares/authorize.middleware.js"
+import appointmentRoutes from "./routes/appointment.routes.js"
 
 const app = express()
 
@@ -45,6 +46,7 @@ app.use(
 app.use("/api/patients", patientRoutes)
 app.use("/api/doctors", doctorRoutes)
 app.use("/api/auth", authRoutes)
+app.use("/api/appointments", appointmentRoutes)
 
 const PORT = Number(process.env.PORT) || 3000
 
