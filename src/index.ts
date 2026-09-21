@@ -9,6 +9,7 @@ import swaggerUi from "swagger-ui-express"
 import { verifyToken } from "./middlewares/auth.middleware.js"
 import { authorize } from "./middlewares/authorize.middleware.js"
 import appointmentRoutes from "./routes/appointment.routes.js"
+import reportRoutes from "./routes/report.routes.js"
 
 const app = express()
 
@@ -47,6 +48,7 @@ app.use("/api/patients", patientRoutes)
 app.use("/api/doctors", doctorRoutes)
 app.use("/api/auth", authRoutes)
 app.use("/api/appointments", appointmentRoutes)
+app.use("/api/reports", reportRoutes)
 
 const PORT = Number(process.env.PORT) || 3000
 
