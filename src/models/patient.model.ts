@@ -25,6 +25,20 @@ export function getPatientById(id: number) {
   return prisma.paciente.findUnique({
     where: {
       id
+    },
+    include: {
+      citas: {
+        include: {
+          medico: {
+            include: {
+              especialidad: true
+            }
+          }
+        },
+        orderBy: {
+          fechaHora: "desc"
+        }
+      }
     }
   })
 }
