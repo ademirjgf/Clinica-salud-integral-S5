@@ -1,25 +1,33 @@
 import { Router } from "express"
-import { getAllDoctorsController } from "../controllers/doctor.controller.js"
-import { getDoctorAgendaController } from "../controllers/appointment.controller.js"
+import {
+  createAppointmentController,
+  updateAppointmentStatusController
+} from "../controllers/appointment.controller.js"
+import {
+  validateAppointment,
+  validateAppointmentStatus
+} from "../middlewares/validate-appointment.js"
 import { verifyToken } from "../middlewares/auth.middleware.js"
 import { authorize } from "../middlewares/authorize.middleware.js"
 
 const router = Router()
 
-router.get(
+router.post(
   "/",
   /* #swagger.security = [{ "bearerAuth": [] }] */
   verifyToken,
   authorize("RECEPCIONISTA"),
-  getAllDoctorsController
+  validateAppointment,
+  createAppointmentController
 )
 
-router.get(
-  "/:id/appointments",
+router.patch(
+  "/:id/status",
   /* #swagger.security = [{ "bearerAuth": [] }] */
   verifyToken,
   authorize("MEDICO"),
-  getDoctorAgendaController
+  validateAppointmentStatus,
+  updateAppointmentStatusController
 )
 
 export default router
